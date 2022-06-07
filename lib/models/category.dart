@@ -4,21 +4,21 @@ class Category {
   Category({required this.icon, required this.title});
 }
 
-List<Category> demoCategories = [
+List<Category> dummyCategories = [
   Category(
     icon: "assets/icons/dress.svg",
-    title: "Dress",
+    title: "Vestidos",
   ),
   Category(
     icon: "assets/icons/shirt.svg",
-    title: "Shirt",
+    title: "Camisas",
   ),
   Category(
     icon: "assets/icons/pants.svg",
-    title: "Pants",
+    title: "Calças",
   ),
   Category(
     icon: "assets/icons/Tshirt.svg",
-    title: "Tshirt",
+    title: "Camisetas",
   ),
 ];
