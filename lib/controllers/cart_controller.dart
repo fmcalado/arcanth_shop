@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   final _products = {}.obs;
 
-  void addProduct(Product product) {
+  void addProduct(Product product, int amount) {
     if (_products.containsKey(product)) {
-      _products[product] += 1;
+      _products[product] += amount;
     } else {
-      _products[product] = 1;
+      _products[product] = amount;
     }
     Get.snackbar(
       product.title,
