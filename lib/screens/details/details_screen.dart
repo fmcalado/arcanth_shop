@@ -48,39 +48,53 @@ class DetailsScreen extends StatelessWidget {
                 ],
               ),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            product.title,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: defaultPadding,
-                        ),
-                        Text(
-                          "R\$${product.price}",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: defaultPadding),
-                      child: Text(product.description),
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    AddProduct(product: product),
-                  ],
-                ),
+                child: AddProduct(product: product),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class ProductInfo extends StatelessWidget {
+  const ProductInfo({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                product.title,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Text(
+              "R\$${product.price}",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ],
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(vertical: defaultPadding),
+          child: Text(product.description),
+        ),
+        const SizedBox(height: defaultPadding),
+        AddProduct(product: product),
+      ],
     );
   }
 }

@@ -25,52 +25,77 @@ class _AddProductState extends State<AddProduct> {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  if(_productCounter >= 2 ) _productCounter--;
-                });
-              },
-              child: const Text("-"),
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: defaultPadding, right: defaultPadding),
+            Expanded(
               child: Text(
-                "$_productCounter",
+                widget.product.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _productCounter++;
-                });
-              },
-              child: const Text("+"),
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-              ),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Text(
+              "R\$${widget.product.price * _productCounter}",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ],
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+          child: Text(widget.product.description),
+        ),
         const SizedBox(height: defaultPadding),
-        SizedBox(
-          width: 200,
-          height: 48,
-          child: ElevatedButton(
-            onPressed: () {
-              for (var i = 0; i < _productCounter; i++) {
-                cartController.addProduct(widget.product);
-              }
-            },
-            child: const Text("Adicionar ao carrinho"),
-          ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (_productCounter >= 2) _productCounter--;
+                    });
+                  },
+                  child: const Text("-"),
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: defaultPadding, right: defaultPadding),
+                  child: Text(
+                    "$_productCounter",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _productCounter++;
+                    });
+                  },
+                  child: const Text("+"),
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: defaultPadding),
+            SizedBox(
+              width: 200,
+              height: 48,
+              child: ElevatedButton(
+                onPressed: () {
+                  cartController.addProduct(widget.product, _productCounter);
+                  Navigator.pop(context);
+                },
+                child: const Text("Adicionar ao carrinho"),
+              ),
+            ),
+          ],
         ),
       ],
     );
